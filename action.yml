@@ -1,0 +1,32 @@
+name: Semantic Version
+description: Validate a strict semantic version with an optional lowercase v prefix.
+author: insd47
+
+inputs:
+  version:
+    description: A complete semantic version, optionally prefixed with v.
+    required: true
+
+outputs:
+  version:
+    description: The normalized semantic version without the v prefix.
+  major:
+    description: The major version number.
+  minor:
+    description: The minor version number.
+  patch:
+    description: The patch version number.
+  prerelease:
+    description: The dot-separated prerelease identifiers, or an empty string.
+  build:
+    description: The dot-separated build identifiers, or an empty string.
+  is-prerelease:
+    description: Whether the version contains prerelease identifiers.
+
+runs:
+  using: node24
+  main: dist/index.js
+
+branding:
+  color: blue
+  icon: tag

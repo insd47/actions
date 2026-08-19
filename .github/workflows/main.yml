@@ -1,0 +1,55 @@
+name: 검사
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Action 검사
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.24.0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: 패키지 설치
+        run: pnpm install --frozen-lockfile
+
+      - name: 검사
+        run: pnpm check
+
+      - name: 번들 검증
+        run: |
+          pnpm build
+          git diff --exit-code -- dist
+
+      - name: Action 실행
+        id: version
+        uses: ./
+        with:
+          version: v1.2.3-beta.1+build.42
+
+      - name: 출력 검증
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          PRERELEASE: ${{ steps.version.outputs.prerelease }}
+          BUILD: ${{ steps.version.outputs.build }}
+          IS_PRERELEASE: ${{ steps.version.outputs.is-prerelease }}
+        run: |
+          test "$VERSION" = '1.2.3-beta.1+build.42'
+          test "$PRERELEASE" = 'beta.1'
+          test "$BUILD" = 'build.42'
+          test "$IS_PRERELEASE" = 'true'
