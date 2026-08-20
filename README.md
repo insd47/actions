@@ -12,13 +12,13 @@ Focused utility actions for GitHub workflows.
 ```yaml
 - name: Resolve release version
   id: version
-  uses: insd47/actions/semver@v1
+  uses: insd47/actions/semver@v2
   with:
     version: ${{ github.ref_name }}
 
 - name: Prepare a temporary file
   id: temporary
-  uses: insd47/actions/temp-file@v1
+  uses: insd47/actions/temp-file@v2
   with:
     path: config/example.json
     content: |

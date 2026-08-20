@@ -7,7 +7,7 @@ Validate a complete [Semantic Version 2.0.0](https://semver.org/) value while ac
 ```yaml
 - name: Resolve release version
   id: version
-  uses: insd47/actions/semver@v1
+  uses: insd47/actions/semver@v2
   with:
     version: ${{ github.ref_name }}
 

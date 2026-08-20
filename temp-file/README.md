@@ -8,7 +8,7 @@ remove its entire temporary directory in the job Post phase.
 ```yaml
 - name: Prepare Artifact Signing metadata
   id: metadata
-  uses: insd47/actions/temp-file@v1
+  uses: insd47/actions/temp-file@v2
   with:
     path: artifact-signing.json
     content: |
