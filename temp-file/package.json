@@ -1,0 +1,25 @@
+{
+  "name": "@insd47/actions-temp-file",
+  "version": "1.0.0",
+  "description": "Write raw content to an isolated temporary file and remove it after the job.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm typecheck && ncc build src/index.ts -o dist --minify && ncc build src/post/index.ts -o dist/post --minify",
+    "check": "pnpm typecheck && pnpm test",
+    "test": "node --test test/*.test.mts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "github-actions",
+    "temporary-file"
+  ],
+  "author": "insd47",
+  "license": "MIT",
+  "engines": {
+    "node": "24.x"
+  },
+  "dependencies": {
+    "@actions/core": "^3.0.1"
+  }
+}

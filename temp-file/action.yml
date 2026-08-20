@@ -1,0 +1,25 @@
+name: Temporary File
+description: Write raw content to an isolated temporary file and remove it after the job.
+author: insd47
+
+inputs:
+  path:
+    description: Relative file path inside an isolated temporary directory.
+    required: true
+  content:
+    description: Raw UTF-8 file content. Leading, trailing, and multiline whitespace is preserved.
+    required: true
+
+outputs:
+  path:
+    description: Absolute path of the temporary file for use in the current job.
+
+runs:
+  using: node24
+  main: dist/index.js
+  post: dist/post/index.js
+  post-if: always()
+
+branding:
+  color: blue
+  icon: file

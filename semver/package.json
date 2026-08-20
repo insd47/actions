@@ -1,0 +1,30 @@
+{
+  "name": "@insd47/actions-semver",
+  "version": "1.0.0",
+  "description": "Validate a strict semantic version with an optional v prefix.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm typecheck && ncc build src/index.ts -o dist --minify",
+    "check": "pnpm typecheck && pnpm test",
+    "test": "node --test test/*.test.mts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "github-actions",
+    "semver",
+    "version"
+  ],
+  "author": "insd47",
+  "license": "MIT",
+  "engines": {
+    "node": "24.x"
+  },
+  "dependencies": {
+    "@actions/core": "^3.0.1",
+    "semver": "^7.8.5"
+  },
+  "devDependencies": {
+    "@types/semver": "^7.7.1"
+  }
+}
